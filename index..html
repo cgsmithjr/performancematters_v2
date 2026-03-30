@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Matters | Training and Consulting</title>
+    <!-- Tailwind CSS for modern layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for typography matching the design -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pm-navy: #001F3F; /* Deep Navy Blue */
+            --pm-teal: #1A7B9A; /* Lighter Blue/Teal for secondary text */
+            --pm-gray-bg: #F9FAFB;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        /* Use Oswald for the bold, condensed headings seen in the mockup */
+        h1, h2, h3, h4, .brand-heading {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .text-navy { color: var(--pm-navy); }
+        .text-teal { color: var(--pm-teal); }
+        .bg-navy { background-color: var(--pm-navy); }
+        .border-navy { border-color: var(--pm-navy); }
+
+        /* Navigation link hover effect */
+        .nav-link {
+            position: relative;
+            color: #111;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--pm-teal);
+        }
+
+        /* Faint mountain background motif */
+        .bg-mountain-faint {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 200' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100,200 L150,80 L250,130 L450,20 L600,110 L750,50 L900,140 L1100,200' stroke='%23E5E7EB' stroke-width='2' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M100,105 L160,50 L210,90' stroke='%23E5E7EB' stroke-width='1.5' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M380,60 L460,10 L540,80' stroke='%23E5E7EB' stroke-width='1.5' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-size: cover;
+        }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Map Placeholder styling */
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 250px;
+            border: none;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center">
+                <!-- Using the provided logo image -->
+                <img src="performance_logo.jpg" alt="Performance Matters Logo" class="h-16 object-contain">
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#resources" class="nav-link">Resources</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-navy focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section 1: Full Width Image -->
+        <section class="w-full h-[50vh] min-h-[400px] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80');">
+            <!-- The image acts purely as a visual header in the mockup -->
+        </section>
+
+        <!-- Hero Section 2: Title and CTA -->
+        <section class="py-20 bg-white relative overflow-hidden bg-mountain-faint">
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h1 class="text-6xl md:text-8xl font-bold text-navy mb-4 tracking-tight drop-shadow-sm">PERFORMANCE MATTERS</h1>
+                
+                <div class="w-full max-w-4xl mx-auto flex items-center justify-center mb-6">
+                    <div class="flex-grow border-t-2 border-navy"></div>
+                </div>
+                
+                <h2 class="text-3xl md:text-5xl text-teal tracking-wide mb-10">TRAINING AND CONSULTING</h2>
+                
+                <a href="#services" class="inline-block bg-navy text-white font-inter font-semibold px-10 py-4 rounded-md shadow-lg hover:bg-opacity-90 transition">
+                    Explore Training Programs
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-gray-50 border-t border-gray-200">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-16">OUR CONSULTING AND<br>TRAINING SOLUTIONS</h2>
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Service 1 -->
+                    <div class="service-card bg-white p-10 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                        <img src="performance_logo.jpg" alt="Icon" class="h-12 mb-6 opacity-80 object-cover" style="object-position: top; object-fit: cover; width: 100px;">
+                        <h3 class="text-2xl text-navy mb-4 tracking-wide">Management<br>Consulting</h3>
+                        <p class="text-gray-600 mb-8 text-sm leading-relaxed flex-grow">Management Consulting and consulting and assessment of organizational team leadership and operations.</p>
+                        <a href="#" class="font-bold text-navy border-b border-navy pb-1 hover:text-teal hover:border-teal transition text-sm">Learn More</a>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card bg-white p-10 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                        <img src="performance_logo.jpg" alt="Icon" class="h-12 mb-6 opacity-80 object-cover" style="object-position: top; object-fit: cover; width: 100px;">
+                        <h3 class="text-2xl text-navy mb-4 tracking-wide">Leadership<br>Training</h3>
+                        <p class="text-gray-600 mb-8 text-sm leading-relaxed flex-grow">Measurement-based leadership training for executive management and core leadership teams.</p>
+                        <a href="#" class="font-bold text-navy border-b border-navy pb-1 hover:text-teal hover:border-teal transition text-sm">Learn More</a>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card bg-white p-10 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                        <img src="performance_logo.jpg" alt="Icon" class="h-12 mb-6 opacity-80 object-cover" style="object-position: top; object-fit: cover; width: 100px;">
+                        <h3 class="text-2xl text-navy mb-4 tracking-wide">Team Dynamics<br>Workshops</h3>
+                        <p class="text-gray-600 mb-8 text-sm leading-relaxed flex-grow">Collaborative group workshops aimed at enhancing team communication and peak performance.</p>
+                        <a href="#" class="font-bold text-navy border-b border-navy pb-1 hover:text-teal hover:border-teal transition text-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Workshop Section -->
+        <section class="py-24 bg-white relative bg-mountain-faint">
+            <div class="container mx-auto px-6 flex justify-center relative z-10">
+                <div class="bg-white p-12 rounded-xl shadow-xl border border-gray-100 max-w-3xl text-center">
+                    <img src="performance_logo.jpg" alt="Icon" class="h-16 mx-auto mb-6 opacity-90 object-cover" style="object-position: top; object-fit: cover; width: 150px;">
+                    <h3 class="text-3xl text-navy mb-6 tracking-wide">Team Dynamics<br>Workshops</h3>
+                    <p class="text-gray-600 mb-8 max-w-xl mx-auto">We fundamentalize core aspects of team performance and collaboration to empower your workforce to reach new operational peaks.</p>
+                    <a href="#" class="inline-block bg-navy text-white font-inter font-semibold px-8 py-3 rounded hover:bg-opacity-90 transition text-sm">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-gray-50 border-t border-gray-200">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-12">ABOUT US PERFORMANCE MATTERS</h2>
+                
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-1/2">
+                        <p class="text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
+                            Performance Matters is committed to comprehensive growth strategies, emphasizing team alignment, leadership development, and structural operational changes. Through tailored consulting models, we ensure your management framework meets the demands of a modern competitive environment.
+                        </p>
+                        <p class="text-gray-700 mb-6 leading-relaxed text-sm md:text-base">
+                            Our mission is executing on rapid organizational turnarounds and implementing crucial training frameworks to drive new performance peaks. We combine industry best practices with customized action plans.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed text-sm md:text-base">
+                            Our network of outstanding consultants translates complex challenges into actionable roadmaps, setting the standard for corporate performance training.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Performance Matters Team" class="w-full rounded shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-navy mb-12">CONTACT PERFORMANCE MATTERS</h2>
+                
+                <div class="flex flex-col md:flex-row gap-10">
+                    <!-- Form -->
+                    <div class="md:w-1/2">
+                        <form class="space-y-6">
+                            <div>
+                                <input type="text" placeholder="Name" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition" required>
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition" required>
+                            </div>
+                            <div>
+                                <textarea rows="5" placeholder="Message" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-navy text-white font-bold py-4 rounded hover:bg-opacity-90 transition">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Map Placeholder -->
+                    <div class="md:w-1/2 map-container bg-gray-100 rounded shadow-inner p-2">
+                        <!-- Standard Google Maps iframe embed -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968459391!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-8 border-t-4 border-teal">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-sm text-gray-400 mb-4 md:mb-0">
+                © Copyright | Performance Matters.
+            </div>
+            
+            <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                <!-- Simple text logo fallback for dark footer -->
+                <div class="font-oswald tracking-widest text-lg">PERFORMANCE MATTERS</div>
+            </div>
+
+            <div class="flex space-x-4 items-center text-sm text-gray-400">
+                <!-- Social Icons placehoder using SVG -->
+                <a href="#" class="hover:text-white transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+                <a href="#" class="hover:text-white transition">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <span class="ml-2 font-semibold">@performancematters</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
