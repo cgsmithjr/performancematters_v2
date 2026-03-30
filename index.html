@@ -1,345 +1,150 @@
-import React, { useState } from 'react';
-import { Menu, X, Facebook, Instagram, Twitter, MapPin } from 'lucide-react';
-
-// --- Shared Assets & Components ---
-
-// Brand Colors
-const colors = {
-  darkNavy: '#0f172a', // Tailwind slate-900
-  brandBlue: '#0284c7', // Tailwind sky-600
-  lightBg: '#f8fafc',  // Tailwind slate-50
-};
-
-// SVG Mountain Graphic used in logo and backgrounds
-const MountainGraphic = ({ className = "", strokeWidth = 1.5 }) => (
-  <svg viewBox="0 0 400 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} preserveAspectRatio="xMidYMax meet">
-    <path 
-      d="M10,80 Q30,80 50,60 L80,30 L100,50 L120,20 L150,60 L170,40 L190,70 L220,10 L250,50 L270,30 L300,70 L330,40 L360,70 Q380,80 390,80" 
-      stroke="currentColor" 
-      strokeWidth={strokeWidth} 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-    />
-    <path 
-      d="M70,40 L90,60 M110,30 L130,50 M140,70 L160,50 M180,60 L200,40 M210,20 L230,60 M260,40 L280,60" 
-      stroke="currentColor" 
-      strokeWidth={strokeWidth} 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-      className="opacity-60"
-    />
-  </svg>
-);
-
-// Recreated Logo Component
-const Logo = ({ className = "", onClick, isFooter = false }) => {
-  return (
-    <div 
-      className={`flex flex-col items-center justify-center cursor-pointer ${className}`} 
-      onClick={onClick}
-    >
-      <MountainGraphic className={`w-32 sm:w-48 text-slate-800 ${isFooter ? 'text-white/80' : ''}`} strokeWidth={2} />
-      <div className="flex flex-col items-center mt-[-10px] w-full">
-        <h1 className={`font-bold uppercase tracking-wider ${isFooter ? 'text-white text-lg' : 'text-slate-900 text-xl sm:text-2xl lg:text-3xl'}`} style={{ fontFamily: 'Impact, sans-serif', letterSpacing: '0.05em' }}>
-          Performance Matters
-        </h1>
-        <div className={`w-[90%] h-[2px] my-1 sm:my-2 ${isFooter ? 'bg-white/50' : 'bg-slate-900'}`}></div>
-        <h2 className={`uppercase font-semibold tracking-widest ${isFooter ? 'text-sky-300 text-[10px]' : 'text-sky-700 text-xs sm:text-sm'}`}>
-          Training and Consulting
-        </h2>
-      </div>
-    </div>
-  );
-};
-
-// Background Motif for sections
-const BackgroundMotif = () => (
-  <div className="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none opacity-10 flex justify-center text-slate-900">
-    <MountainGraphic className="w-full max-w-6xl h-auto translate-y-1/4" strokeWidth={1} />
-  </div>
-);
-
-// --- Main Application ---
-
-export default function App() {
-  const [currentView, setCurrentView] = useState('home');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeService, setActiveService] = useState(null);
-
-  const navigateTo = (view) => {
-    setCurrentView(view);
-    setIsMobileMenuOpen(false);
-    window.scrollTo(0, 0);
-  };
-
-  const handleLearnMore = (service) => {
-    setActiveService(service);
-    navigateTo('service-detail');
-  };
-
-  // --- Views ---
-
-  const HomeView = () => (
-    <div className="flex flex-col w-full relative pb-32">
-      {/* Hero Image Section */}
-      <div className="w-full h-[60vh] sm:h-[70vh] relative bg-slate-200">
-        <img 
-          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-          alt="Team meeting" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/20"></div>
-      </div>
-      
-      {/* Hero Content Section */}
-      <div className="w-full max-w-5xl mx-auto px-6 mt-16 sm:mt-24 text-center relative z-10">
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-slate-900 uppercase tracking-tight" style={{ fontFamily: 'Impact, sans-serif' }}>
-          Performance Matters
-        </h1>
-        <div className="w-full max-w-2xl mx-auto h-[3px] bg-slate-900 my-6"></div>
-        <h2 className="text-xl sm:text-3xl font-bold text-sky-700 uppercase tracking-widest mb-12">
-          Training and Consulting
-        </h2>
-        
-        <button 
-          onClick={() => navigateTo('services')}
-          className="bg-slate-900 hover:bg-slate-800 text-white font-semibold py-4 px-10 rounded shadow-xl transition duration-300 text-lg sm:text-xl"
-        >
-          Explore Training Programs
-        </button>
-      </div>
-      <BackgroundMotif />
-    </div>
-  );
-
-  const ServicesView = () => {
-    const services = [
-      { id: 1, title: 'Management Consulting', desc: 'Management Consulting and consulting and organizational consulting to enhance operational excellence and profitability.' },
-      { id: 2, title: 'Leadership Training', desc: 'Comprehensive leadership development programs designed to accelerate growth and build resilient leadership teams.' },
-      { id: 3, title: 'Team Dynamics Workshops', desc: 'Interactive workshops focused on improving communication, resolving conflict, and building high-performance teams.' }
-    ];
-
-    return (
-      <div className="w-full max-w-7xl mx-auto px-6 py-20 relative min-h-[70vh]">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 uppercase tracking-wide mb-4">
-            Our Consulting And<br />Training Solutions
-          </h2>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-          {services.map((service) => (
-            <div key={service.id} className="bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-              <MountainGraphic className="w-32 text-slate-800 mb-6" strokeWidth={1.5} />
-              <h3 className="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
-              <p className="text-slate-600 mb-8 flex-grow leading-relaxed text-sm">
-                {service.desc}
-              </p>
-              <button 
-                onClick={() => handleLearnMore(service)}
-                className="font-bold text-slate-900 border-b-2 border-slate-900 pb-1 hover:text-sky-700 hover:border-sky-700 transition-colors uppercase text-sm tracking-wider"
-              >
-                Learn More
-              </button>
-            </div>
-          ))}
-        </div>
-        <BackgroundMotif />
-      </div>
-    );
-  };
-
-  const ServiceDetailView = () => (
-    <div className="w-full max-w-5xl mx-auto px-6 py-24 relative min-h-[70vh] flex flex-col items-center justify-center">
-      <div className="bg-white rounded-xl shadow-[0_20px_50px_rgb(0,0,0,0.1)] p-10 sm:p-16 max-w-3xl w-full text-center relative z-10">
-        <MountainGraphic className="w-40 mx-auto text-slate-800 mb-8" strokeWidth={1.5} />
-        <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 uppercase tracking-wide">
-          {activeService?.title || 'Team Dynamics Workshops'}
-        </h2>
-        <p className="text-slate-600 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
-          We fundamentally believe that great teams are built on a foundation of trust, clear communication, and shared purpose. Our {activeService?.title.toLowerCase() || 'workshops'} are designed to unlock your team's full potential.
-        </p>
-        <button 
-          onClick={() => navigateTo('contact')}
-          className="bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-8 rounded shadow-lg transition duration-300 uppercase tracking-wider text-sm"
-        >
-          Contact Us To Learn More
-        </button>
-      </div>
-      <button 
-        onClick={() => navigateTo('services')}
-        className="mt-8 text-slate-500 hover:text-slate-800 flex items-center gap-2 z-10 font-medium"
-      >
-        &larr; Back to Services
-      </button>
-      <BackgroundMotif />
-    </div>
-  );
-
-  const AboutView = () => (
-    <div className="w-full max-w-7xl mx-auto px-6 py-20 relative min-h-[70vh]">
-      <div className="flex flex-col lg:flex-row gap-16 items-center relative z-10">
-        <div className="lg:w-1/2">
-          <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 uppercase tracking-wide mb-8">
-            About Us Performance Matters
-          </h2>
-          <div className="space-y-6 text-slate-700 leading-relaxed">
-            <p>
-              Performance Matters is a premier consulting and training company focused on helping organizations navigate complex challenges and achieve sustainable growth. We partner with leaders to build high-performing teams and resilient cultures.
-            </p>
-            <p>
-              Our mission is to equip professionals with the skills, mindset, and strategies needed to excel in today's dynamic business environment. We believe that continuous learning is the cornerstone of lasting success.
-            </p>
-            <p>
-              With decades of combined experience, our facilitators and consultants bring practical insights and proven methodologies to every engagement, ensuring tangible results that matter to your bottom line.
-            </p>
-          </div>
-        </div>
-        <div className="lg:w-1/2 relative">
-          <div className="absolute inset-0 bg-sky-600/10 translate-x-4 translate-y-4 rounded-lg z-0"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-            alt="Diverse team of professionals" 
-            className="rounded-lg shadow-xl relative z-10 w-full h-auto object-cover"
-          />
-        </div>
-      </div>
-      <BackgroundMotif />
-    </div>
-  );
-
-  const ContactView = () => (
-    <div className="w-full max-w-7xl mx-auto px-6 py-20 relative min-h-[70vh]">
-      <h2 className="text-3xl sm:text-5xl font-bold text-slate-900 uppercase tracking-wide mb-12 text-center lg:text-left">
-        Contact Performance Matters
-      </h2>
-      
-      <div className="flex flex-col lg:flex-row gap-12 relative z-10">
-        {/* Form Form */}
-        <div className="lg:w-1/2">
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <input type="text" placeholder="Name" className="w-full p-4 border border-slate-300 rounded focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors bg-white/80" />
-            </div>
-            <div>
-              <input type="email" placeholder="Email" className="w-full p-4 border border-slate-300 rounded focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors bg-white/80" />
-            </div>
-            <div>
-              <textarea placeholder="Message" rows="6" className="w-full p-4 border border-slate-300 rounded focus:outline-none focus:border-sky-600 focus:ring-1 focus:ring-sky-600 transition-colors bg-white/80 resize-none"></textarea>
-            </div>
-            <button className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded shadow-md transition duration-300 uppercase tracking-widest text-sm">
-              Submit
-            </button>
-          </form>
-        </div>
-        
-        {/* Map Placeholder */}
-        <div className="lg:w-1/2 h-80 lg:h-auto bg-slate-200 rounded-lg overflow-hidden relative shadow-inner flex items-center justify-center">
-          {/* Faux map background pattern */}
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #0f172a 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-lg relative z-10 text-center flex flex-col items-center max-w-xs">
-            <div className="w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center mb-4 text-white shadow-md">
-               <MapPin size={24} />
-            </div>
-            <h4 className="font-bold text-slate-900 text-lg mb-1">Performance Matters HQ</h4>
-            <p className="text-slate-600 text-sm">123 Corporate Blvd, Suite 400<br/>Business District, NY 10001</p>
-          </div>
-        </div>
-      </div>
-      <BackgroundMotif />
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen flex flex-col font-sans bg-slate-50 overflow-x-hidden">
-      
-      {/* Navigation Bar */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Logo onClick={() => navigateTo('home')} className="w-48 sm:w-64" />
-          
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
-            {['Services', 'About Us', 'Resources', 'Blog', 'Contact'].map((item) => {
-              const viewName = item === 'About Us' ? 'about' : item.toLowerCase();
-              return (
-                <button 
-                  key={item}
-                  onClick={() => navigateTo(viewName)}
-                  className={`font-semibold text-sm uppercase tracking-wider transition-colors hover:text-sky-700 ${currentView === viewName ? 'text-sky-700' : 'text-slate-900'}`}
-                >
-                  {item}
-                </button>
-              )
-            })}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden p-2 text-slate-900"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-
-        {/* Mobile Nav Dropdown */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-slate-100 flex flex-col py-4 px-6 z-50">
-            {['Services', 'About Us', 'Resources', 'Blog', 'Contact'].map((item) => {
-              const viewName = item === 'About Us' ? 'about' : item.toLowerCase();
-              return (
-                <button 
-                  key={item}
-                  onClick={() => navigateTo(viewName)}
-                  className="py-3 text-left font-semibold text-slate-900 uppercase tracking-wider border-b border-slate-50 w-full hover:text-sky-700"
-                >
-                  {item}
-                </button>
-              )
-            })}
-          </div>
-        )}
-      </header>
-
-      {/* Main Content Area */}
-      <main className="flex-grow flex flex-col relative bg-[#fcfdfd]">
-        {currentView === 'home' && <HomeView />}
-        {currentView === 'services' && <ServicesView />}
-        {currentView === 'service-detail' && <ServiceDetailView />}
-        {currentView === 'about' && <AboutView />}
-        {currentView === 'contact' && <ContactView />}
-        {/* Placeholders for links not in mockup */}
-        {(currentView === 'resources' || currentView === 'blog') && (
-          <div className="flex-grow flex items-center justify-center p-20 text-slate-400 font-medium text-xl">
-            {currentView.charAt(0).toUpperCase() + currentView.slice(1)} Section - Coming Soon
-          </div>
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-[#0f172a] text-slate-300 py-8 px-6 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-sm">
-            © Copyright 2024 Performance Matters. All rights reserved.
-          </div>
-          
-          <div className="flex-shrink-0">
-             <Logo onClick={() => navigateTo('home')} className="w-32 scale-75 opacity-90 hover:opacity-100 transition-opacity" isFooter={true} />
-          </div>
-
-          <div className="flex items-center space-x-6">
-            <a href="#" className="hover:text-white transition-colors"><Facebook size={20} /></a>
-            <a href="#" className="hover:text-white transition-colors"><Instagram size={20} /></a>
-            <a href="#" className="hover:text-white transition-colors flex items-center gap-2">
-              <Twitter size={20} />
-              <span className="text-sm">@performmatters</span>
-            </a>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-  );
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Matters | Training & Consulting</title>
+<style>
+        :root {
+            --navy: #002147;
+            --accent-blue: #3A7CA5; /* Matches the "Training" text */
+            --light-bg: #F8F9FA;
+            --white: #FFFFFF;
+            --footer-dark: #001529;
+        }
+ 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--navy); }
+ 
+        /* --- Header & Nav --- */
+        header { background: var(--white); padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo-area img { height: 60px; }
+        nav a { margin-left: 25px; text-decoration: none; color: var(--navy); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        nav a:hover { color: var(--accent-blue); }
+ 
+        /* --- Hero Section --- */
+        .hero { padding: 100px 8%; display: flex; align-items: center; background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2070') no-repeat center/cover; min-height: 80vh; }
+        .hero-content { max-width: 600px; }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 10px; text-transform: uppercase; }
+        .hero h2 { color: var(--accent-blue); font-size: 1.8rem; border-top: 2px solid var(--navy); display: inline-block; padding-top: 10px; margin-bottom: 30px; }
+        .btn { background: var(--navy); color: white; padding: 15px 35px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block; transition: 0.3s; }
+        .btn:hover { background: var(--accent-blue); }
+ 
+        /* --- Services/Grid Section --- */
+        .section-padding { padding: 80px 8%; text-align: center; }
+        .section-title { font-size: 2.2rem; margin-bottom: 50px; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: var(--white); padding: 40px; border: 1px solid #eee; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .card .mountain-icon { width: 50px; margin-bottom: 20px; opacity: 0.7; }
+ 
+        /* --- Split Content (About/Contact) --- */
+        .split { display: flex; gap: 50px; align-items: center; text-align: left; margin-top: 50px; }
+        .split-text { flex: 1; }
+        .split-image { flex: 1; border-radius: 8px; overflow: hidden; height: 400px; background: #ddd; }
+        .split-image img { width: 100%; height: 100%; object-fit: cover; }
+ 
+        /* --- Contact Form --- */
+        .contact-form { background: var(--light-bg); padding: 40px; border-radius: 8px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; }
+        /* --- Footer --- */
+        footer { background: var(--footer-dark); color: white; padding: 60px 8% 20px; text-align: center; }
+        .footer-logo { height: 50px; filter: brightness(0) invert(1); margin-bottom: 20px; }
+        .social-links { margin: 20px 0; }
+        .social-links a { color: white; margin: 0 10px; text-decoration: none; font-size: 1.2rem; }
+        .copyright { font-size: 0.8rem; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+ 
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .split { flex-direction: column; }
+        }
+</style>
+</head>
+<body>
+ 
+    <header>
+<div class="logo-area">
+<img src="logo.jpg" alt="Performance Matters">
+</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+ 
+    <section class="hero" id="home">
+<div class="hero-content">
+<h1>Performance Matters</h1>
+<h2>Training and Consulting</h2>
+<p style="margin-bottom: 30px; font-size: 1.1rem;">Expert guidance and specialized training programs designed to scale excellence and drive momentum in your organization.</p>
+<a href="#services" class="btn">Explore Training Programs</a>
+</div>
+</section>
+ 
+    <section class="section-padding" id="services" style="background: var(--light-bg);">
+<h2 class="section-title">Our Consulting and Training Solutions</h2>
+<div class="grid">
+<div class="card">
+<h3>Management Consulting</h3>
+<p>Strategic structural guidance to streamline operations and maximize output.</p>
+<a href="#" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; display: block; margin-top: 15px;">Learn More</a>
+</div>
+<div class="card">
+<h3>Leadership Training</h3>
+<p>Empowering decision-makers with the tools for ethical and effective leadership.</p>
+<a href="#" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; display: block; margin-top: 15px;">Learn More</a>
+</div>
+<div class="card">
+<h3>Team Dynamics Workshops</h3>
+<p>Fostering collaboration and high-performance culture within your teams.</p>
+<a href="#" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; display: block; margin-top: 15px;">Learn More</a>
+</div>
+</div>
+</section>
+ 
+    <section class="section-padding" id="about">
+<div class="split">
+<div class="split-text">
+<h2 class="section-title" style="text-align: left;">About Performance Matters</h2>
+<p>We believe that at the peak of every successful organization is a foundation of rigorous training and sound consulting. Our mission is to provide the roadmap for growth, using industry-standard legal and ethical frameworks.</p>
+<p style="margin-top: 15px;">Based in North Carolina, we specialize in high-stakes training environments where precision and performance are not just goals, but requirements.</p>
+</div>
+<div class="split-image">
+<img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" alt="Team collaborating">
+</div>
+</div>
+</section>
+ 
+    <section class="section-padding" id="contact" style="background: var(--light-bg);">
+<h2 class="section-title">Contact Us</h2>
+<div class="split">
+<div class="contact-form" style="flex: 1.5;">
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<textarea rows="5" placeholder="How can we help you?"></textarea>
+<button class="btn" style="border: none; cursor: pointer; width: 100%;">Submit Inquiry</button>
+</div>
+<div class="split-text" style="padding-left: 20px;">
+<h3>Get in Touch</h3>
+<p>Performance Matters Training & Consulting</p>
+<p>North Carolina, USA</p>
+<p style="margin-top: 20px;"><strong>Email:</strong> info@performancematters.com</p>
+</div>
+</div>
+</section>
+ 
+    <footer>
+<img src="logo.jpg" alt="Logo" class="footer-logo">
+<div class="social-links">
+<a href="#">LinkedIn</a>
+<a href="#">Facebook</a>
+<a href="#">Twitter</a>
+</div>
+<p class="copyright">&copy; 2026 Performance Matters. All Rights Reserved.</p>
+</footer>
+ 
+</body>
+</html>
