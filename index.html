@@ -272,42 +272,91 @@
         </section>
 
         <!-- Contact -->
-        <section id="contact" class="py-24 bg-white border-t border-gray-200">
+<section id="contact" class="py-24 bg-[var(--pm-light)] border-t border-[var(--pm-border)]">
             <div class="container mx-auto px-6 max-w-6xl">
                 <div class="text-center max-w-3xl mx-auto mb-14">
                     <p class="section-eyebrow mb-4">Contact</p>
-                    <h2 class="text-4xl md:text-5xl font-bold text-navy mb-5">Let’s Start the Conversation</h2>
-                    <p class="text-slate-600 text-lg leading-relaxed">
-                        Tell us a little about your organization, your goals, or the challenges your team is facing. We’ll follow up to discuss the best next step.
+                    <h2 class="text-4xl md:text-5xl text-navy font-bold mb-5">Start the Conversation</h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Whether you are exploring leadership development, consulting support, or team workshops, we would be glad to learn more about your goals.
                     </p>
                 </div>
 
-                <div class="flex flex-col md:flex-row gap-10">
-                    <div class="md:w-1/2 contact-card p-8 md:p-10">
-                        <form class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-navy mb-2">Name</label>
-                                <input type="text" placeholder="Your name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition" required>
-                            </div>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="contact-panel p-8 md:p-10">
+                        <form action="https://formspree.io/f/mpqodwjr" method="POST" class="space-y-6">
+    <div>
+        <label class="block text-sm font-semibold text-navy mb-2">Name</label>
+        <input
+            type="text"
+            name="name"
+            placeholder="Your name"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition"
+            required
+        >
+    </div>
 
-                            <div>
-                                <label class="block text-sm font-semibold text-navy mb-2">Email</label>
-                                <input type="email" placeholder="you@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition" required>
-                            </div>
+    <div>
+        <label class="block text-sm font-semibold text-navy mb-2">Agency/Organization</label>
+        <input
+            type="text"
+            name="organization"
+            placeholder="Your agency"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition"
+        >
+    </div>
 
-                            <div>
-                                <label class="block text-sm font-semibold text-navy mb-2">Message</label>
-                                <textarea rows="5" placeholder="Briefly describe your needs or goals" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition" required></textarea>
-                            </div>
+    <div>
+        <label class="block text-sm font-semibold text-navy mb-2">Email</label>
+        <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition"
+            required
+        >
+    </div>
 
-                            <button type="submit" class="w-full bg-navy text-white font-bold py-4 rounded-lg hover:opacity-90 transition shadow">
-                                Submit Inquiry
-                            </button>
-                        </form>
+    <div>
+        <label class="block text-sm font-semibold text-navy mb-2">How can we help?</label>
+        <textarea
+            name="message"
+            rows="5"
+            placeholder="Tell us a little about your organization or the support you are looking for"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-navy focus:ring-1 focus:ring-navy transition"
+            required
+        ></textarea>
+    </div>
+
+    <input type="hidden" name="_subject" value="New inquiry from Performance Matters website">
+
+    <button type="submit" class="w-full button-primary py-4 shadow">
+        Submit Inquiry
+    </button>
+</form>
                     </div>
 
-                    <div class="md:w-1/2 contact-card overflow-hidden">
-                        <img src="https://cgsmith.me/signature/lightbulb.png" alt="Creative strategy and ideas" class="w-full h-full object-cover min-h-[420px]">
+                    <div class="contact-panel p-8 md:p-10 flex flex-col justify-between">
+                        <div>
+                            <p class="section-eyebrow mb-4">Contact Information</p>
+                            <h3 class="text-3xl text-navy mb-6">Let’s connect</h3>
+                            <p class="text-slate-600 leading-relaxed mb-8">
+                                Reach out by email or use the inquiry form and we’ll follow up to discuss your training or consulting needs.
+                            </p>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-sm font-semibold text-navy uppercase tracking-wider mb-1">Email</p>
+                                    <a href="mailto:info@performancematters-tc.com" class="text-teal font-semibold hover:underline">
+                                        info@performancematters-tc.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10">
+                            <img src="https://cgsmith.me/signature/notes.png" alt="Strategy session notes" class="w-full rounded-xl shadow-md">
+                        </div>
                     </div>
                 </div>
             </div>
